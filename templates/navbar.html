@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="assets/navbar.css">
+<nav class="navbar">
+    <ul>
+        {% for link in links %}
+        <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

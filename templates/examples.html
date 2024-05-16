@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Thinnerthinker - Projects{% endblock %}
+
+{% block main %}
+<main>
+  <section id="projects">
+    <h2>Examples</h2>
+    <h3>Sursface Examples in WASM
+      <a href="https://github.com/thinnerthinker/sursface" class="github-icon" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+    </h3>
+    <ul>
+      <h4>Hello Window</h4>
+      <canvas id="hello-window" width="640" height="360"></canvas>
+      <script type="module">
+        import init, { start_browser } from '../assets/sursface_examples/hello_window.js';
+        async function run() {
+          await init();
+          start_browser(document.getElementById("hello-window"));
+        }
+
+        run();
+      </script>
+    </ul>
+  </section>
+</main>
+{% endblock %}

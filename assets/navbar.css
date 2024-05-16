@@ -1,0 +1,37 @@
+.navbar {
+    align-self: stretch;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.navbar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    height: 100%;
+    /* Ensure the ul takes the full height */
+}
+
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+    /* Make each li take the full height */
+}
+
+.navbar li+li {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    /* Separating line */
+}
+
+.navbar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

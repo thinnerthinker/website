@@ -1,0 +1,24 @@
+[package]
+name = "website"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "website"
+path = "src/main.rs"
+
+[dependencies]
+askama = "0.12.1"
+askama_axum = "0.4.0"
+axum = "0.7.5"
+
+tokio = { version = "1.37.0", features = ["full"] }
+tower-http = { version = "0.5.2", features = ["fs"] }
+
+serde = { version = "1.0.202", features = ["derive"] }
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+tower-livereload = "0.9.2"
+notify = "6.1.1"
+memory-serve = "0.4.5"
