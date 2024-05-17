@@ -24,6 +24,7 @@ async fn main() {
         .route("/projects", get(|| render(templates::Projects::create())))
         .route("/examples", get(|| async { Redirect::to("/examples/sursface") }))
         .route("/examples/sursface", get(|| render(templates::ExamplesSursface::create())))
+        .route("/favicon.ico", get(Redirect::to("/assets/images/flake.png")))
         .nest_service("/assets", ServeDir::new("assets"))
         .fallback(handle_404);
 
