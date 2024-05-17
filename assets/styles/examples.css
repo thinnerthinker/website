@@ -1,0 +1,5 @@
+.full-width-canvas {
+    width: calc(100% - 40px);
+    max-width: 640px;
+    display: block;
+}

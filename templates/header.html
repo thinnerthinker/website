@@ -1,12 +1,10 @@
-{% block header %}
-<link rel="stylesheet" href="assets/header.css">
+<link rel="stylesheet" href="/assets/styles/header.css">
 <header>
+    {% include "backdrop.html" %}
     <div class="header-content">
         <div class="header-title">
             <h1>Hopedge Labs</h1>
-            <p>Building software that makes a difference.</p>
+            <p class="subtitle">Building software that makes a difference.</p>
         </div>
-        {% include "navbar.html" %}
     </div>
 </header>
-{% endblock %}

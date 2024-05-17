@@ -2,12 +2,15 @@
 
 {% block title %}Thinnerthinker - Projects{% endblock %}
 
+{% block nav %}
+{{ main_navbar.html|safe }}
+{% endblock %}
+
 {% block main %}
-<main>
-  <section id="projects">
+<section id="projects">
     <h2>Projects</h2>
     <p>Work in progress!</p>
-    <p>In the meantime, you can check out the <a href="/examples">Examples</a> or visit <a href="https://github.com/thinnerthinker">my Github</a> ;)</p>
-  </section>
-</main>
+    <p>In the meantime, you can check out the <a href="/examples">Examples</a> or visit <a
+            href="https://github.com/thinnerthinker">my Github</a> ;)</p>
+</section>
 {% endblock %}

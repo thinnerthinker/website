@@ -1,0 +1,22 @@
+{% extends "examples/examples_base.html" %}
+
+{% block example_content %}
+<h2>Sursface Examples in WASM
+  <a href="https://github.com/thinnerthinker/sursface" class="github-icon" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+</h2>
+
+<h3>Hello Window</h3>
+<canvas id="hello-window" class="full-width-canvas" width="640" height="360"></canvas>
+<script type="module">
+  import init, { start_browser } from '/assets/sursface_examples/hello_window.js';
+  async function run() {
+    await init();
+    start_browser(document.getElementById("hello-window"));
+  }
+
+  run();
+</script>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+header {
+    position: relative;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: 2px solid #5e5e5e;
+    overflow: hidden;
+}
+
+.header-content {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    z-index: 1;
+}
+
+.header-title {
+    text-align: left;
+    max-width: 70%;
+    /* Ensure the title does not exceed this width */
+    flex-grow: 1;
+    /* Allow the title to grow within available space */
+    color: white;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 40px;
+}
+
+.header-title p {
+    margin: 0 0 0 0;
+    font-size: 15px;
+}
+
+.subtitle {
+    font-weight: bold;
+}

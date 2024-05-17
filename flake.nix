@@ -27,7 +27,7 @@
               ' sh {} \;
             '';
 
-            buildFiles = [ "assets" "templates" ];
+            buildFiles = [ "templates" ];
             resultFiles = [ "assets" ];
 
             env = {

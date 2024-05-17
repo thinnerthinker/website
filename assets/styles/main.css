@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #37474f; /* Fallback color */
+  background-image: linear-gradient(to bottom, #1f1f1f, #272727);
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-family: 'Carlito', sans-serif;
+}
+
+a {
+  color: #add8e6;
+}
+
+a:visited {
+  color: #b0e0e6;
+}
+
+a:hover {
+  color: #64ffda;
+}
+
+
+.github-icon,
+.discord-icon {
+  font-size: 35px;
+  color: #e0e0e0;
+  text-decoration: none;
+  margin-left: 10px;
+  vertical-align: middle;
+  line-height: 0%;
+}
+
+.github-icon:hover,
+.discord-icon:hover {
+  color: #64ffda;
+}
+
+.content {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin: 0;
+}

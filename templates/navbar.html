@@ -1,8 +1,11 @@
-<link rel="stylesheet" href="assets/navbar.css">
+<link rel="stylesheet" href="/assets/styles/navbar.css">
 <nav class="navbar">
+    {% include "backdrop.html" %}
     <ul>
         {% for link in links %}
-        <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+        <li class="nav-item {% if route_url == link.route %}active{% endif %}" data-url="{{ link.url }}">
+            <a href="{{ link.url }}"class="nav-link">{{ link.name }}</a>
+        </li>
         {% endfor %}
     </ul>
 </nav>

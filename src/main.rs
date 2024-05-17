@@ -1,10 +1,11 @@
 mod settings;
 mod templates;
+mod data;
 
-use axum::{http::StatusCode, response::{Html, IntoResponse}, routing::get, Router};
+use axum::{http::StatusCode, response::{Html, IntoResponse, Redirect}, routing::get, Router};
+use templates::{Header, Navbar, Raw};
 use tower_http::services::ServeDir;
 use std::net::SocketAddr;
-use tower_livereload::LiveReloadLayer;
 use tracing::{info, warn};
 use tracing_subscriber::filter::EnvFilter;
 use tracing_subscriber::FmtSubscriber;
@@ -13,18 +14,18 @@ use askama::Template;
 
 #[tokio::main]
 async fn main() {
-    // Initialize tracing subscriber
     let trace_sub = FmtSubscriber::builder()
         .with_env_filter(EnvFilter::new("askama_axum_rust_template=debug"))
         .finish();
     tracing::subscriber::set_global_default(trace_sub).unwrap();
 
     let app = Router::new()
-        .route("/", get(handle_main))
-        .route("/projects", get(handle_projects))
-        .route("/examples", get(handle_examples))
+        .route("/", get(|| render(templates::Main::create())))
+        .route("/projects", get(|| render(templates::Projects::create())))
+        .route("/examples", get(|| async { Redirect::to("/examples/sursface") }))
+        .route("/examples/sursface", get(|| render(templates::ExamplesSursface::create())))
         .nest_service("/assets", ServeDir::new("assets"))
-        .layer(LiveReloadLayer::new());
+        .fallback(handle_404);
 
     let listen_addr: SocketAddr = format!("{}:{}", settings::default_ip(), settings::default_port())
         .parse()
@@ -32,18 +33,12 @@ async fn main() {
 
     info!("Listening on http://{}", listen_addr);
 
-    // Start the server
     let listener = tokio::net::TcpListener::bind(listen_addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
 
-
-async fn handle_main() -> impl IntoResponse {
-    let nav_links = generate_nav_links();
-    let navbar = templates::Navbar { links: nav_links };
-    let main = templates::Main { links: navbar.links };
-
-    match main.render() {
+async fn render(template: impl Template) -> impl IntoResponse {
+    match template.render() {
         Ok(reply_html) => (StatusCode::OK, Html(reply_html).into_response()),
         Err(err) => {
             warn!("Failed to render template: {}", err);
@@ -52,45 +47,6 @@ async fn handle_main() -> impl IntoResponse {
     }
 }
 
-async fn handle_projects() -> impl IntoResponse {
-    let nav_links = generate_nav_links();
-    let projects = templates::Projects { links: nav_links };
-
-    match projects.render() {
-        Ok(reply_html) => (StatusCode::OK, Html(reply_html).into_response()),
-        Err(err) => {
-            warn!("Failed to render projects template: {}", err);
-            (StatusCode::INTERNAL_SERVER_ERROR, "Internal Server Error".into_response())
-        }
-    }
-}
-
-async fn handle_examples() -> impl IntoResponse {
-    let nav_links = generate_nav_links();
-    let examples = templates::Examples { links: nav_links };
-
-    match examples.render() {
-        Ok(reply_html) => (StatusCode::OK, Html(reply_html).into_response()),
-        Err(err) => {
-            warn!("Failed to render examples template: {}", err);
-            (StatusCode::INTERNAL_SERVER_ERROR, "Internal Server Error".into_response())
-        }
-    }
-}
-
-fn generate_nav_links() -> Vec<templates::NavLink> {
-    vec![
-        templates::NavLink {
-            name: "Home",
-            url: "/",
-        },
-        templates::NavLink {
-            name: "Projects",
-            url: "/projects",
-        },
-        templates::NavLink {
-            name: "Examples",
-            url: "/examples",
-        },
-    ]
+async fn handle_404() -> impl IntoResponse {
+    (StatusCode::NOT_FOUND, Html("<h1>404 - Not Found</h1><p>The page you are looking for does not exist.</p>"))
 }

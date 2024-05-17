@@ -1,0 +1,54 @@
+.navbar {
+    align-self: stretch;
+    height: 100%;
+    width: 100%;
+    border-bottom: 2px solid #5e5e5e;
+    position: relative;
+}
+
+.navbar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+    width: 120px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.navbar li:hover {
+    background: rgba(0, 0, 0, 1);
+}
+
+.navbar li.active {
+    background: rgba(0, 0, 0, 1); /* Slightly different background for active link */
+}
+
+
+.navbar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #f0f0f0;
+}

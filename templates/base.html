@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Thinnerthinker - Better Software{% endblock %}</title>
-    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="/assets/styles/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     {% block header %}
-    {% include "header.html" %}
+    {{ header.html|safe }}
     {% endblock %}
 
     <main>
-        {% block main %}
-        {% endblock %}
+        {% block nav %}{% endblock %}
+        <div class="content">
+            {% block main %}{% endblock %}
+        </div>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Thinnerthinker. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>

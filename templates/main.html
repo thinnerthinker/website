@@ -2,26 +2,28 @@
 
 {% block title %}Thinnerthinker - Better Software{% endblock %}
 
-{% block main %}
-<main>
-  <section id="about-me">
-    <h2>About Me
-      <a href="https://github.com/thinnerthinker" class="github-icon" target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-    </h2>
-    <p>I'm <a href="https://github.com/thinnerthinker">thinnerthinker</a>, a person who works on (mostly but not only)
-      graphical Rust apps built using my own Nix flakes.</p>
-  </section>
+{% block nav %}
+{{ main_navbar.html|safe }}
+{% endblock %}
 
-  <section id="about-us">
-    <h2>About Us
-      <a href="https://discord.gg/9cprxYsj" class="discord-icon" target="_blank">
-        <i class="fa-brands fa-discord"></i>
-      </a>
-    </h2>
-    <p>It's only me for now. This site was created on 5/16/24, and I'm building a community.
-      Any kinda contribution counts, even just joining our Discord server, or visiting this very page.</p>
-  </section>
-</main>
+{% block main %}
+<section id="about-me">
+  <h2>About Me
+    <a href="https://github.com/thinnerthinker" class="github-icon" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+  </h2>
+  <p>I'm <a href="https://github.com/thinnerthinker">thinnerthinker</a>, a person who works on (mostly but not only)
+    graphical Rust apps built using my own Nix flakes.</p>
+</section>
+
+<section id="about-us">
+  <h2>About Us
+    <a href="https://discord.gg/9cprxYsj" class="discord-icon" target="_blank">
+      <i class="fa-brands fa-discord"></i>
+    </a>
+  </h2>
+  <p>It's only me for now. This site was created on 5/16/24, and I'm building a community.
+    Any kinda contribution counts, even just joining our Discord server, or visiting this very page.</p>
+</section>
 {% endblock %}
