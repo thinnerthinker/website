@@ -35,8 +35,6 @@ nix build .
 
 ### Cross-Compiling with Nix
 
-Sursface supports cross-compilation to various targets. Here are some examples:
-
 #### Compiling for Linux
 
 ```sh
