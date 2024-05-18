@@ -1,5 +1,5 @@
 {
-  description = "Sursface, a cross-platform rendering library";
+  description = "Thinnerthinker's personal website";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
