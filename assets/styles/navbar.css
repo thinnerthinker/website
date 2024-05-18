@@ -15,15 +15,19 @@
     position: relative;
 }
 
+.logo {
+    filter: brightness(0) invert(1);
+}
+
 .navbar li {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    height: 100%;
-    width: 120px;
+    padding-left: 10px;
+    padding-right: 10px;
     position: relative;
     background: rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease;
 }
 
 .navbar li:hover {
@@ -31,24 +35,57 @@
 }
 
 .navbar li.active {
-    background: rgba(0, 0, 0, 1); /* Slightly different background for active link */
+    background: rgba(0, 0, 0, 1);
 }
 
+.navbar li.disabled .logo {
+    filter: invert(1) brightness(0.5);
+}
 
-.navbar a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
+.navbar li a,
+.navbar li .nav-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    color: #fff;
+    text-decoration: none;
     font-weight: bold;
     font-size: 16px;
     padding: 10px;
     transition: color 0.3s ease;
 }
 
-.navbar a:hover {
+.navbar li a span,
+.navbar li div span {
+    display: none;
+    color: #fff;
+}
+
+.navbar li.disabled a span, 
+.navbar li.disabled div span {
+    display: none;
+    color: #a0a0a0;
+}
+
+.navbar li .logo,
+.navbar li .logo {
+    margin-right: 0px;
+}
+
+.navbar li:hover .logo,
+.navbar li.active .logo {
+    margin-right: 10px;
+}
+
+.navbar li:hover a span,
+.navbar li.active a span,
+.navbar li.active.disabled a span,
+.navbar li:hover div span,
+.navbar li.active div span,
+.navbar li.active.disabled div span {
+    display: inline;
+}
+
+.navbar li a:hover {
     color: #f0f0f0;
 }

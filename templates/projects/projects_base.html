@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Thinnerthinker - Projects{% endblock %}
+
+{% block nav %}
+{{ main_navbar.html|safe }}
+{{ projects_navbar.html|safe }}
+{% endblock %}
+
+{% block main %}
+<link rel="stylesheet" href="/assets/styles/examples.css">
+<section id="projects">
+    {% block project_content %}{% endblock %}
+</section>
+{% endblock %}

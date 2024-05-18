@@ -27,6 +27,8 @@ pub struct NavLink {
     pub name: &'static str,
     pub url: &'static str,
     pub route: &'static str,
+    pub icon: &'static str,
+    pub disabled: bool,
 }
 
 #[derive(Template)]
@@ -62,6 +64,14 @@ pub struct Projects {
 #[derive(Template)]
 #[template(path = "examples/sursface.html")]
 pub struct ExamplesSursface {
+    pub main_navbar: Raw<Navbar>,
+    pub header: Raw<Header>,
+    pub examples_navbar: Raw<Navbar>,
+}
+
+#[derive(Template)]
+#[template(path = "examples/sayle.html")]
+pub struct ExamplesSayle {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
     pub examples_navbar: Raw<Navbar>,

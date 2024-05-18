@@ -3,8 +3,18 @@
     {% include "backdrop.html" %}
     <ul>
         {% for link in links %}
-        <li class="nav-item {% if route_url == link.route %}active{% endif %}" data-url="{{ link.url }}">
-            <a href="{{ link.url }}"class="nav-link">{{ link.name }}</a>
+        <li class="nav-item {% if route_url == link.route %}active{% endif %} {% if link.disabled %}disabled{% endif %}" data-url="{{ link.url }}">
+            {% if link.disabled %}
+                <div class="nav-link">
+                    <img src="{{ link.icon }}" class="logo" alt="{{ link.name }} icon" width="32" height="32">
+                    <span>{{ link.name }}</span>
+                </div>
+            {% else %}
+                <a href="{{ link.url }}" class="nav-link">
+                    <img src="{{ link.icon }}" class="logo" alt="{{ link.name }} icon" width="32" height="32">
+                    <span>{{ link.name }}</span>
+                </a>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>

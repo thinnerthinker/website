@@ -34,6 +34,7 @@ header {
     flex-grow: 1;
     /* Allow the title to grow within available space */
     color: white;
+    z-index: 1;
 }
 
 .header-title h1 {
