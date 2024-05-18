@@ -1,4 +1,4 @@
-use crate::templates::{ExamplesSayle, ExamplesSursface, Header, Main, Navbar, Projects, Raw};
+use crate::templates::{ExamplesSayle, ExamplesSursface, Header, Main, Navbar, ProjectsSursface, Raw};
 mod navbar;
 
 impl Header {
@@ -16,11 +16,12 @@ impl Main {
     }
 }
 
-impl Projects {
+impl ProjectsSursface {
     pub fn create() -> Self {
-        Projects { 
+        ProjectsSursface { 
             main_navbar: Raw::to_raw(Navbar::create_main("/projects")),
             header: Raw::to_raw(Header::create_main()),
+            projects_navbar: Raw::to_raw(Navbar::create_projects_sursface("/projects/sursface")),
         }
     }
 }

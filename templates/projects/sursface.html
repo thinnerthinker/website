@@ -1,0 +1,51 @@
+{% extends "projects/projects_base.html" %}
+
+{% block project_content %}
+<h2>Sursface - A cross-platform rendering library
+  <a href="https://github.com/thinnerthinker/sursface" class="github-icon" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+</h2>
+
+<h3>What?</h3>
+A library that abstracts away all platform-specific details of window creation/management, hooking up the window to
+WebGPU, inserting the canvas, etc.
+What remains is a clean and C-friendly API that transparently grants access to wgpu's and winit's crates, and provides
+resource management for your in-flight wgpu pipelines.
+Besides runtime, compile-time processes are also pinned down exactly with the help of Nix. The flake created for the
+project guarantees exact reproducibility, so everyone
+can build it, from anywhere to anywhere else.
+With all that friction automated out, Sursface is <i>the</i> way towards powerful graphics application on top of Rust.
+
+<h3>Why?</h3>
+Graphics applications are hard. Always has been this way, and is the same way in Rust. While wgpu and winit provide
+wonderful abstractions towards this end
+(and these are state of the art btw), tying them together in just the right way, amongst ever-changing APIs, is not
+easy. So I waltzed in. In fact, I'd like to create
+a <i>lot</i> of applications on top of this, so it is worth it for me to maintain and develop this further.
+TLDR: selfishness
+
+<h3>How?</h3>
+Under the hood, Sursface uses wgpu for graphics (falling back to WebGL on WASM to prevent crashes from questionable
+WebGPU support in browsers), and winit for window creation.
+It also uses env_logger and fern, on desktop and browser respectively, to provide logging.
+Right now all it does is create a clear window, but we are planning on giving the user full control over wgpu in this
+window's context, and also provide user input data
+and much more through winit.
+At the bottom of it all, we have a Nix flake that uses Tomers, a homegrown Nix flake, that itself uses Fenix to create
+the right Rust toolchain for each cross-platform target,
+and Crane to do the Cargo build itself. Tomers wraps this all up in a nice giftbox and hands it to you in exchange for a
+detailed description of platforms you want to target 
+(you can spice this up with custom config too, like what other flags or post-install bash scripts you want to run, or
+which files besides the executable you want to keep from the source).
+
+<h3>May I see it?
+  <a href="https://github.com/thinnerthinker/sursface" class="github-icon" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+</h3>
+Check out the GitHub, and the Examples on this site for embedded canvases running WASM compiled from my Linux laptop, or
+rather, from the GitHub Actions VMs, for
+which I wrote the flake to build on my Linux machine.
+
+{% endblock %}

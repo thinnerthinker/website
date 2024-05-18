@@ -55,10 +55,11 @@ pub struct Main {
 }
 
 #[derive(Template)]
-#[template(path = "projects.html")]
-pub struct Projects {
+#[template(path = "projects/sursface.html")]
+pub struct ProjectsSursface {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
+    pub projects_navbar: Raw<Navbar>,
 }
 
 #[derive(Template)]
