@@ -2,16 +2,16 @@ header {
     position: relative;
     height: 150px;
     display: flex;
-    align-items: left;
-    vertical-align: middle;
+    align-items: center; /* Changed from left to center for better alignment */
     justify-content: left;
     padding-left: 20px;
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: 2px solid #5e5e5e;
     overflow: hidden;
+    width: 100%; /* Ensure the header always takes full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-
 
 .header-logo {
     margin-right: 15px;
@@ -25,16 +25,15 @@ header {
     height: 100%;
     align-items: center;
     z-index: 1;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .header-title {
     text-align: left;
     max-width: 70%;
-    /* Ensure the title does not exceed this width */
     flex-grow: 1;
-    /* Allow the title to grow within available space */
     color: white;
-    z-index: 1;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .header-title h1 {
@@ -49,4 +48,25 @@ header {
 
 .subtitle {
     font-weight: bold;
+}
+
+/* Ensure the container for the embedded content is responsive */
+.responsive-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-bottom: 20px;
+}
+
+/* Ensure the iframe or embed takes full width and height of the container */
+.responsive-embed iframe,
+.responsive-embed embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

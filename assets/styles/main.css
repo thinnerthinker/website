@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap');
 
+html, body {
+  overflow-x: hidden; /* Hide horizontal overflow */
+  width: 100%; /* Ensure the width is 100% of the viewport */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -46,6 +54,7 @@ a:hover {
 .content {
   padding-top: 10px;
   padding-left: 20px;
+  max-width: 500px !important;
 }
 
 h2 {
