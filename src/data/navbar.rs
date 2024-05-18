@@ -48,6 +48,37 @@ impl Navbar {
                 icon: "/assets/images/sursface.png",
                 disabled: false,
             },
+            NavLink {
+                name: "Website",
+                url: "/projects/website",
+                route: "/projects/website",
+                icon: "/assets/images/website.png",
+                disabled: false,
+            },
+        ];
+        Navbar {
+            links: nav_links,
+            bg_image: "/assets/images/puddle.jpg".to_string(),
+            route_url: route_url.to_string(),
+        }
+    }
+
+    pub fn create_projects_website(route_url: &'static str) -> Self {
+        let nav_links = vec![
+            NavLink {
+                name: "Sursface",
+                url: "/projects/sursface",
+                route: "/projects/sursface",
+                icon: "/assets/images/sursface.png",
+                disabled: false,
+            },
+            NavLink {
+                name: "Website",
+                url: "/projects/website",
+                route: "/projects/website",
+                icon: "/assets/images/website.png",
+                disabled: false,
+            },
         ];
         Navbar {
             links: nav_links,

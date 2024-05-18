@@ -24,11 +24,12 @@ async fn main() {
 
         .route("/projects", get(|| async { Redirect::to("/projects/sursface") }))
         .route("/projects/sursface", get(|| render(templates::ProjectsSursface::create())))
+        .route("/projects/website", get(|| render(templates::ProjectsWebsite::create())))
 
         .route("/examples", get(|| async { Redirect::to("/examples/sursface") }))
         .route("/examples/sursface", get(|| render(templates::ExamplesSursface::create())))
         .route("/examples/sayle", get(|| render(templates::ExamplesSayle::create())))
-        
+
         .route("/favicon.ico", get(Redirect::to("/assets/images/flake.png")))
         .nest_service("/assets", ServeDir::new("assets"))
         .fallback(handle_404);

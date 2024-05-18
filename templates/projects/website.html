@@ -1,0 +1,16 @@
+{% extends "projects/projects_base.html" %}
+
+{% block project_content %}
+<h2>Thinnerthinker's personal website
+  <a href="https://github.com/thinnerthinker/website" class="github-icon" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+</h2>
+
+This is an <a href="https://github.com/tokio-rs/axum">Axum</a> web server rendering
+<a href="https://github.com/djc/askama">Askama</a> templates that I pieced together to create the pages.
+I use no Javascript, other than calling the bindings on the WASM examples. The navbar states and all the rest are all static.
+
+It is running at home, from my laptop, channeled through a Cloudflare tunnel to y'all. Hope you like it ;)
+
+{% endblock %}

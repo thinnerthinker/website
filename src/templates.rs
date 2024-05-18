@@ -63,6 +63,14 @@ pub struct ProjectsSursface {
 }
 
 #[derive(Template)]
+#[template(path = "projects/website.html")]
+pub struct ProjectsWebsite {
+    pub main_navbar: Raw<Navbar>,
+    pub header: Raw<Header>,
+    pub projects_navbar: Raw<Navbar>,
+}
+
+#[derive(Template)]
 #[template(path = "examples/sursface.html")]
 pub struct ExamplesSursface {
     pub main_navbar: Raw<Navbar>,
