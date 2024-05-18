@@ -27,7 +27,8 @@ a:hover {
 
 
 .github-icon,
-.discord-icon {
+.discord-icon,
+.youtube-icon {
   font-size: 35px;
   color: #e0e0e0 !important;
   text-decoration: none;
@@ -37,7 +38,8 @@ a:hover {
 }
 
 .github-icon:hover,
-.discord-icon:hover {
+.discord-icon:hover,
+.youtube-icon:hover {
   color: #64ffda  !important;
 }
 
