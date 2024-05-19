@@ -33,9 +33,12 @@ Under the hood, Sursface uses wgpu for graphics (falling back to WebGL on WASM t
 WebGPU support in browsers), and winit for window creation.
 It also uses <a href="https://github.com/rust-cli/env_logger/tree/main">env_logger</a> and
 <a href="https://github.com/daboross/fern">fern</a>, on desktop and browser respectively, to provide logging.
-Right now all it does is create a clear window, but we are planning on giving the user full control over wgpu in this
-window's context, and also provide user input data
-and much more through winit.
+Right now it create a window, start winit's event loop that take control completely away from you, 
+then leaks it to you as an init and render method with which you can call into the loop., 
+It allows you to keep all your necessary resources on the heap between the calls, in fact, thats how we managed to create a triangle.
+Right now you have full control over wgpu inside our functions, and can also use wasm_bindgen for the entry points, 
+but we are planning on giving the user full control over wgpu in this
+window's context, and also provide user input data and much more through winit.
 At the bottom of it all, we have a Nix flake that uses <a href="https://github.com/thinnerthinker/tomers">Tomers</a>, a
 homegrown Nix flake, that itself uses
 <a href="https://github.com/nix-community/fenix">Fenix</a> to create
