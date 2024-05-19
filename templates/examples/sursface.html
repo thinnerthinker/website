@@ -21,4 +21,18 @@
   run();
 </script>
 
+<h3>Hello Triangle</h3>
+<div class="responsive-embed">
+  <canvas id="hello-triangle" class="full-width-canvas" width="640" height="360"></canvas>
+</div>
+<script type="module">
+  import init, { start_browser } from '/assets/sursface_examples/hello_triangle.js';
+  async function run() {
+    await init();
+    start_browser(document.getElementById("hello-triangle"));
+  }
+
+  run();
+</script>
+
 {% endblock %}
