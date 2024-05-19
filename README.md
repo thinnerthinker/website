@@ -19,7 +19,7 @@ cd website
 
 ### Building with Cargo
 
-You can compile Sursface on your native platform using Cargo:
+You can compile on your native platform using Cargo:
 
 ```sh
 cargo build --release
