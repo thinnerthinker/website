@@ -9,21 +9,19 @@
 
 <h3>What?</h3>
 A library that abstracts away all platform-specific details of window creation/management, hooking up the window to
-WebGPU, inserting the canvas, etc.
+WebGPU, inserting the canvas, untangling lifetimes for you, etc.
 What remains is a clean and C-friendly API that transparently grants access to
 <a href="https://github.com/gfx-rs/wgpu">wgpu</a>'s and <a href="https://github.com/rust-windowing/winit">winit</a>'s
-crates, and provides
-resource management for your in-flight wgpu pipelines.
+crates, and provides simple resource management for your in-flight wgpu pipelines.
 Besides runtime, compile-time processes are also pinned down exactly with the help of <a
   href="https://nixos.org/">Nix</a>. The flake created for the
-project guarantees exact reproducibility, so everyone
-can build it, from anywhere to anywhere else.
-With all that friction automated out, Sursface is <i>the</i> way towards powerful graphics application on top of Rust.
+project guarantees exact reproducibility, so everyone can build it, from anywhere to anywhere else, anytime.
+With all that friction automated out, Sursface is <i>the</i> way towards powerful graphics applications on top of Rust.
 
 <h3>Why?</h3>
 Graphics applications are hard. Always has been this way, and is the same way in Rust. While wgpu and winit provide
-wonderful abstractions towards this end
-(and these are state of the art btw), tying them together in just the right way, amongst ever-changing APIs, is not
+wonderful abstractions towards this end (and these are state of the art btw), 
+tying them together in just the right way, amongst ever-changing APIs, is not
 easy. So I waltzed in. In fact, I'd like to create
 a <i>lot</i> of applications on top of this, so it is worth it for me to maintain and develop this further.
 TLDR: selfishness
@@ -33,12 +31,11 @@ Under the hood, Sursface uses wgpu for graphics (falling back to WebGL on WASM t
 WebGPU support in browsers), and winit for window creation.
 It also uses <a href="https://github.com/rust-cli/env_logger/tree/main">env_logger</a> and
 <a href="https://github.com/daboross/fern">fern</a>, on desktop and browser respectively, to provide logging.
-Right now it create a window, start winit's event loop that take control completely away from you, 
-then leaks it to you as an init and render method with which you can call into the loop., 
-It allows you to keep all your necessary resources on the heap between the calls, in fact, thats how we managed to create a triangle.
+Right now it creates a window, starts winit's event loop that takes control completely away from you, 
+then leaks it to you as the <code>init</code> and <code>render</code> methods with which you can call into the loop.
+It allows you to keep all your necessary resources on the heap between the calls, and in fact, thats how we managed to create a triangle.
 Right now you have full control over wgpu inside our functions, and can also use wasm_bindgen for the entry points, 
-but we are planning on giving the user full control over wgpu in this
-window's context, and also provide user input data and much more through winit.
+but we are planning on giving the user input data and much more through winit.
 At the bottom of it all, we have a Nix flake that uses <a href="https://github.com/thinnerthinker/tomers">Tomers</a>, a
 homegrown Nix flake, that itself uses
 <a href="https://github.com/nix-community/fenix">Fenix</a> to create
