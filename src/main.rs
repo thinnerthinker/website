@@ -54,6 +54,14 @@ async fn render(template: impl Template) -> impl IntoResponse {
     }
 }
 
-async fn handle_404() -> impl IntoResponse {
-    (StatusCode::NOT_FOUND, Html("<h1>404 - Not Found</h1><p>The page you are looking for does not exist.</p>"))
+async fn handle_404(uri: axum::extract::OriginalUri) -> impl IntoResponse {
+    let path = uri.0.path();
+    if path == "/" || path.is_empty() {
+        (StatusCode::NOT_FOUND, "Not Found").into_response()
+    } else if let Some(new_path) = path.rsplit_once('/') {
+        let new_path = if new_path.0.is_empty() { "/" } else { new_path.0 };
+        Redirect::to(new_path).into_response()
+    } else {
+        (StatusCode::NOT_FOUND, "Not Found").into_response()
+    }
 }
