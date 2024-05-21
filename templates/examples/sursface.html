@@ -7,32 +7,10 @@
   </a>
 </h2>
 
-<h3>Hello Window</h3>
-<div class="responsive-embed">
-  <canvas id="hello-window" class="full-width-canvas" width="640" height="360"></canvas>
-</div>
-<script type="module">
-  import init, { start_browser } from '/assets/sursface_examples/hello_window.js';
-  async function run() {
-    await init();
-    start_browser(document.getElementById("hello-window"));
-  }
+<script src="/assets/js/examples_wasm_arrow.js"></script>
 
-  run();
-</script>
-
-<h3>Hello Triangle</h3>
-<div class="responsive-embed">
-  <canvas id="hello-triangle" class="full-width-canvas" width="640" height="360"></canvas>
-</div>
-<script type="module">
-  import init, { start_browser } from '/assets/sursface_examples/hello_triangle.js';
-  async function run() {
-    await init();
-    start_browser(document.getElementById("hello-triangle"));
-  }
-
-  run();
-</script>
+{% for example in sursface_examples %}
+  {{ example.html|safe }}
+{% endfor %}
 
 {% endblock %}

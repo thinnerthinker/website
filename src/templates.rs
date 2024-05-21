@@ -71,11 +71,20 @@ pub struct ProjectsWebsite {
 }
 
 #[derive(Template)]
+#[template(path = "examples/wasm_example.html")]
+pub struct WasmExample {
+    pub title: String,
+    pub example_id: String,
+    pub project_id: String,
+}
+
+#[derive(Template)]
 #[template(path = "examples/sursface.html")]
 pub struct ExamplesSursface {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
     pub examples_navbar: Raw<Navbar>,
+    pub sursface_examples: Vec<Raw<WasmExample>>,
 }
 
 #[derive(Template)]
