@@ -27,8 +27,8 @@
               ' sh {} \;
             '';
 
-            buildFiles = [ "templates" ];
-            resultFiles = [ "assets" ];
+            buildFiles = [ "templates" "assets" ];
+            resultFiles = [ ];
 
             env = {
               LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ ];

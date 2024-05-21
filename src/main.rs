@@ -2,15 +2,33 @@ mod settings;
 mod templates;
 mod data;
 
-use axum::{http::StatusCode, response::{Html, IntoResponse, Redirect}, routing::get, Router};
+use axum::{body::Body, extract::Path, http::{Response, StatusCode}, response::{Html, IntoResponse, Redirect}, routing::get, Router};
+use sha2::{Digest, Sha256};
 use templates::{Header, Navbar, Raw};
-use tower_http::services::ServeDir;
 use std::net::SocketAddr;
 use tracing::{info, warn};
 use tracing_subscriber::filter::EnvFilter;
 use tracing_subscriber::FmtSubscriber;
 
 use askama::Template;
+use rust_embed::RustEmbed;
+
+#[derive(RustEmbed)]
+#[folder = "assets/"]
+struct Asset;
+
+impl Asset {
+    fn get_hashed_url(file: &str) -> Option<String> {
+        if let Some(content) = Asset::get(file) {
+            let hash = Sha256::digest(&content.data);
+            let hash_str = format!("{:x}", hash);
+            Some(format!("/assets/{}?v={}", file, &hash_str[..8])) // Shorten the hash to 8 characters for brevity
+        } else {
+            None
+        }
+    }
+}
+
 
 #[tokio::main]
 async fn main() {
@@ -30,8 +48,8 @@ async fn main() {
         .route("/examples/sursface", get(|| render(templates::ExamplesSursface::create())))
         .route("/examples/sayle", get(|| render(templates::ExamplesSayle::create())))
 
-        .route("/favicon.ico", get(Redirect::to("/assets/images/flake.png")))
-        .nest_service("/assets", ServeDir::new("assets"))
+        .route("/favicon.ico", get(|| async { Redirect::to("/assets/images/flake.png") }))
+        .route("/assets/*file", get(serve_embedded_file))
         .fallback(handle_404);
 
     let listen_addr: SocketAddr = format!("{}:{}", settings::default_ip(), settings::default_port())
@@ -51,6 +69,24 @@ async fn render(template: impl Template) -> impl IntoResponse {
             warn!("Failed to render template: {}", err);
             (StatusCode::INTERNAL_SERVER_ERROR, "Internal Server Error".into_response())
         }
+    }
+}
+
+async fn serve_embedded_file(Path(file): Path<String>) -> impl IntoResponse {
+    match Asset::get(&file) {
+        Some(content) => {
+            let body = content.data.into_owned();
+            let mime_type = mime_guess::from_path(&file).first_or_octet_stream();
+            Response::builder()
+                .status(StatusCode::OK)
+                .header("Content-Type", mime_type.as_ref())
+                .body(Body::from(body))
+                .unwrap()
+        },
+        None => Response::builder()
+            .status(StatusCode::NOT_FOUND)
+            .body(Body::from("File Not Found"))
+            .unwrap(),
     }
 }
 
