@@ -18,13 +18,13 @@ use rust_embed::RustEmbed;
 struct Asset;
 
 impl Asset {
-    fn get_hashed_url(file: &str) -> Option<String> {
+    fn get_hashed_url(file: &str) -> String {
         if let Some(content) = Asset::get(file) {
             let hash = Sha256::digest(&content.data);
             let hash_str = format!("{:x}", hash);
-            Some(format!("/assets/{}?v={}", file, &hash_str[..8])) // Shorten the hash to 8 characters for brevity
+            format!("/assets/{}?v={}", file, &hash_str[..8])
         } else {
-            None
+            panic!("/assets/{} not found", file);
         }
     }
 }

@@ -1,5 +1,7 @@
 use askama::Template;
+use crate::data::static_paths::StaticPaths;
 
+#[derive(Default)]
 pub struct Raw<T> {
     pub html: String,
     _marker: core::marker::PhantomData<T>,
@@ -21,7 +23,7 @@ impl<T: Template> Raw<T> {
     }
 }
 
-
+#[derive(Default)]
 pub struct NavLink {
     pub name: &'static str,
     pub url: &'static str,
@@ -40,6 +42,18 @@ pub struct Navbar {
     pub navbar_css_path: String,
 }
 
+impl Default for Navbar {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            links: vec![],
+            bg_image: sp.bg_image.clone(),
+            route_url: "/".to_string(),
+            backdrop_css_path: sp.backdrop_css_path.clone(),
+            navbar_css_path: sp.main_css_path.clone(),
+        }
+    }
+}
 
 #[derive(Template)]
 #[template(path = "header.html")]
@@ -50,6 +64,17 @@ pub struct Header {
     pub backdrop_css_path: String,
 }
 
+impl Default for Header {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            bg_image: sp.bg_image.clone(),
+            header_css_path: sp.header_css_path.clone(),
+            logo_path: sp.logo_path.clone(),
+            backdrop_css_path: sp.backdrop_css_path.clone(),
+        }
+    }
+}
 
 #[derive(Template)]
 #[template(path = "main.html")]
@@ -57,6 +82,17 @@ pub struct Main {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
     pub main_css_path: String,
+}
+
+impl Default for Main {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            main_navbar: Raw::to_raw(Navbar::default()),
+            header: Raw::to_raw(Header::default()),
+            main_css_path: sp.main_css_path.clone(),
+        }
+    }
 }
 
 #[derive(Template)]
@@ -69,6 +105,19 @@ pub struct ProjectsSursface {
     pub main_css_path: String,
 }
 
+impl Default for ProjectsSursface {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            main_navbar: Raw::to_raw(Navbar::default()),
+            header: Raw::to_raw(Header::default()),
+            projects_navbar: Raw::to_raw(Navbar::default()),
+            projects_css_path: sp.projects_css_path.clone(),
+            main_css_path: sp.main_css_path.clone(),
+        }
+    }
+}
+
 #[derive(Template)]
 #[template(path = "projects/website.html")]
 pub struct ProjectsWebsite {
@@ -77,6 +126,19 @@ pub struct ProjectsWebsite {
     pub projects_navbar: Raw<Navbar>,
     pub projects_css_path: String,
     pub main_css_path: String,
+}
+
+impl Default for ProjectsWebsite {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            main_navbar: Raw::to_raw(Navbar::default()),
+            header: Raw::to_raw(Header::default()),
+            projects_navbar: Raw::to_raw(Navbar::default()),
+            projects_css_path: sp.projects_css_path.clone(),
+            main_css_path: sp.main_css_path.clone(),
+        }
+    }
 }
 
 #[derive(Template)]
@@ -99,6 +161,21 @@ pub struct ExamplesSursface {
     pub show_canvas_js_path: String,
 }
 
+impl Default for ExamplesSursface {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            main_navbar: Raw::to_raw(Navbar::default()),
+            header: Raw::to_raw(Header::default()),
+            examples_navbar: Raw::to_raw(Navbar::default()),
+            sursface_examples: vec![],
+            examples_css_path: sp.examples_css_path.clone(),
+            main_css_path: sp.main_css_path.clone(),
+            show_canvas_js_path: sp.show_canvas_js_path.clone(),
+        }
+    }
+}
+
 #[derive(Template)]
 #[template(path = "examples/sayle.html")]
 pub struct ExamplesSayle {
@@ -107,4 +184,17 @@ pub struct ExamplesSayle {
     pub examples_navbar: Raw<Navbar>,
     pub examples_css_path: String,
     pub main_css_path: String,
+}
+
+impl Default for ExamplesSayle {
+    fn default() -> Self {
+        let sp = StaticPaths::new();
+        Self {
+            main_navbar: Raw::to_raw(Navbar::default()),
+            header: Raw::to_raw(Header::default()),
+            examples_navbar: Raw::to_raw(Navbar::default()),
+            examples_css_path: sp.examples_css_path.clone(),
+            main_css_path: sp.main_css_path.clone(),
+        }
+    }
 }
