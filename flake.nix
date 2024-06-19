@@ -34,6 +34,23 @@
               LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ ];
             };
           }
+          {
+            system = "aarch64-unknown-linux-gnu";
+            arch = "aarch64-linux";
+            depsBuild = with pkgs; [ patchelf ];
+            postInstall = crateName: ''
+              find $out -type f -exec sh -c '
+                if file "$1" | grep -q "ELF .* executable"; then
+                  patchelf --set-interpreter "/lib/ld-linux-aarch64.so.1" "$1"
+                fi
+              ' sh {} \;
+            '';
+            buildFiles = [ "templates" "assets" ];
+            resultFiles = [ ];
+            env = {
+              LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ ];
+            };
+          }
         ];
         tomersLib = tomers.libFor system targetPlatforms;
       in
