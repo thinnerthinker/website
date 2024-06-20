@@ -14,6 +14,7 @@
     tomers.inputs.flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        buildFilePatterns = [ ".*/templates/.*" ".*/assets/.*" ];
         targetPlatforms = [
           {
             system = "x86_64-unknown-linux-gnu";
@@ -26,13 +27,7 @@
                 fi
               ' sh {} \;
             '';
-
-            buildFiles = [ "templates" "assets" ];
-            resultFiles = [ ];
-
-            env = {
-              LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ ];
-            };
+            inherit buildFilePatterns;
           }
           {
             system = "aarch64-unknown-linux-gnu";
@@ -45,11 +40,7 @@
                 fi
               ' sh {} \;
             '';
-            buildFiles = [ "templates" "assets" ];
-            resultFiles = [ ];
-            env = {
-              LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ ];
-            };
+            inherit buildFilePatterns;
           }
         ];
         tomersLib = tomers.libFor system targetPlatforms;
