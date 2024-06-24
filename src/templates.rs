@@ -201,23 +201,19 @@ impl Default for ExamplesSayle {
 
 
 #[derive(Template)]
-#[template(path = "secrets/crust.html")]
-pub struct SecretsCrust {
+#[template(path = "blog/crust.html")]
+pub struct BlogCrust {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
-    pub projects_navbar: Raw<Navbar>,
-    pub projects_css_path: String,
     pub main_css_path: String,
 }
 
-impl Default for SecretsCrust {
+impl Default for BlogCrust {
     fn default() -> Self {
         let sp = StaticPaths::new();
         Self {
             main_navbar: Raw::to_raw(Navbar::default()),
             header: Raw::to_raw(Header::default()),
-            projects_navbar: Raw::to_raw(Navbar::default()),
-            projects_css_path: sp.projects_css_path.clone(),
             main_css_path: sp.main_css_path.clone(),
         }
     }
