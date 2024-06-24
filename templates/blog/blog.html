@@ -1,0 +1,9 @@
+{% extends "blog/blog_base.html" %}
+
+{% block blog_content %}
+<ul>
+    {% for post in blog_posts %}
+        <li><a href="/blog/{{ post.slug }}">{{ title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

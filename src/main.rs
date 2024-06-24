@@ -48,7 +48,8 @@ async fn main() {
         .route("/examples/sursface", get(|| render(templates::ExamplesSursface::create())))
         .route("/examples/sayle", get(|| render(templates::ExamplesSayle::create())))
 
-        .route("/secret/crust", get(|| render(templates::BlogCrust::default())))
+        .route("/blog", get(|| render(templates::Blog::create())))
+        .route("/blog/crust", get(|| render(templates::BlogCrust::default())))
 
         .route("/favicon.ico", get(|| async { Redirect::to("/assets/images/flake.png") }))
         .route("/assets/*file", get(serve_embedded_file))

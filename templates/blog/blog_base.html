@@ -1,0 +1,13 @@
+{% extends "blog/blog.html" %}
+
+{% block title %}{{ title }} - Thinnerthinker - Blog{% endblock %}
+
+{% block nav %}
+{{ main_navbar.html|safe }}
+{% endblock %}
+
+{% block main %}
+  <h1>{{ title }}</h1>
+  {% block blog_content %}
+  {% endblock %}
+{% endblock %}

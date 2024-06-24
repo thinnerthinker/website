@@ -1,13 +1,7 @@
-{% extends "base.html" %}
+{% extends "blog/blog_base.html" %}
 
-{% block title %}Thinnerthinker - Blog{% endblock %}
-
-{% block nav %}
-{{ main_navbar.html|safe }}
-{% endblock %}
-
-{% block main %}
-<link rel="stylesheet" href="{{ projects_css_path }}">
+{% block blog_content %}
+<link rel="stylesheet" href="{{ main_css_path }}">
 <ul>
     <li>Software development methodology emergent in a constant cycle of curiosity and frustration that incrementally
         grants highly correct updates<h2 id="phase-1-system-design">Phase 1: System Design</h2>
