@@ -55,6 +55,11 @@ impl ExamplesSursface {
                 example_id: "hello_triangle".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Hello Triangle".to_string(),
+            }),
+            Raw::to_raw(WasmExample {
+                example_id: "spinning_cube".to_string(),
+                project_id: "sursface_examples".to_string(),
+                title: "Spinning Cube".to_string(),
             })];
 
         ExamplesSursface { 
