@@ -204,7 +204,7 @@ impl Default for ExamplesSayle {
 pub struct Blog {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
-    pub blog_posts: Vec<Raw<BlogPost>>,
+    pub blog_posts: Vec<Raw<String>>,
     pub main_css_path: String,
 }
 
@@ -221,11 +221,10 @@ impl Default for Blog {
 }
 
 
-
 impl Blog {
-    fn create() -> Self {
+    pub fn create() -> Self {
         let posts = vec![
-            Raw::to_raw(BlogPost {title: "Crust - Curiosly Frustrated", slug: "crust"})
+            Raw::new(Raw::to_raw(BlogCrust {}).html)
         ];
 
         Self {
@@ -237,29 +236,35 @@ impl Blog {
     }
 }
 
-#[derive(Template)]
-#[template(path = "blog/blog_post.html")]
 pub struct BlogPost {
     pub title: String,
-    pub slug: String
+    pub slug: String,
+    pub content: Raw<String>
 }
 
 
 #[derive(Template)]
-#[template(path = "blog/crust.html")]
-pub struct BlogCrust {
+#[template(path = "blog/blog_base.html")]
+pub struct BlogPage {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
     pub main_css_path: String,
+    pub blog_post: BlogPost
 }
 
-impl Default for BlogCrust {
-    fn default() -> Self {
+impl BlogPage {
+    pub fn create(blog_post: BlogPost) -> Self {
         let sp = StaticPaths::new();
         Self {
             main_navbar: Raw::to_raw(Navbar::default()),
             header: Raw::to_raw(Header::default()),
             main_css_path: sp.main_css_path.clone(),
+            blog_post
         }
     }
 }
+
+
+#[derive(Template)]
+#[template(path = "blog/crust.html")]
+pub struct BlogCrust {}
