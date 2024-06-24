@@ -8,7 +8,7 @@ pub struct StaticPaths {
     pub main_css_path: String,
     pub projects_css_path: String,
     pub examples_css_path: String,
-    pub show_canvas_js_path: String,
+    pub show_canvas_js_path: String
 }
 
 impl StaticPaths {
