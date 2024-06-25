@@ -7,6 +7,11 @@ pub struct Raw<T> {
     _marker: core::marker::PhantomData<T>,
 }
 
+pub struct RawAny {
+    pub html: String,
+}
+
+
 impl<T> Raw<T> {
     pub fn new(html: String) -> Self {
         Raw {
@@ -50,7 +55,7 @@ impl Default for Navbar {
             bg_image: sp.bg_image.clone(),
             route_url: "/".to_string(),
             backdrop_css_path: sp.backdrop_css_path.clone(),
-            navbar_css_path: sp.main_css_path.clone(),
+            navbar_css_path: sp.navbar_css_path.clone(),
         }
     }
 }
@@ -147,6 +152,7 @@ pub struct WasmExample {
     pub title: String,
     pub example_id: String,
     pub project_id: String,
+    pub notes: String,
 }
 
 #[derive(Template)]
@@ -204,7 +210,7 @@ impl Default for ExamplesSayle {
 pub struct Blog {
     pub main_navbar: Raw<Navbar>,
     pub header: Raw<Header>,
-    pub blog_posts: Vec<Raw<String>>,
+    pub blog_posts: Vec<BlogPost>,
     pub main_css_path: String,
 }
 
@@ -221,25 +227,10 @@ impl Default for Blog {
 }
 
 
-impl Blog {
-    pub fn create() -> Self {
-        let posts = vec![
-            Raw::new(Raw::to_raw(BlogCrust {}).html)
-        ];
-
-        Self {
-            main_navbar: Raw::to_raw(Navbar::default()),
-            header: Raw::to_raw(Header::default()),
-            main_css_path: sp.main_css_path.clone(),
-            blog_posts: posts,
-        }
-    }
-}
-
 pub struct BlogPost {
     pub title: String,
     pub slug: String,
-    pub content: Raw<String>
+    pub content: RawAny
 }
 
 
@@ -250,18 +241,6 @@ pub struct BlogPage {
     pub header: Raw<Header>,
     pub main_css_path: String,
     pub blog_post: BlogPost
-}
-
-impl BlogPage {
-    pub fn create(blog_post: BlogPost) -> Self {
-        let sp = StaticPaths::new();
-        Self {
-            main_navbar: Raw::to_raw(Navbar::default()),
-            header: Raw::to_raw(Header::default()),
-            main_css_path: sp.main_css_path.clone(),
-            blog_post
-        }
-    }
 }
 
 

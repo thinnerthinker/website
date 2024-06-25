@@ -6,7 +6,11 @@
   {{ main_navbar.html|safe }}
 {% endblock %}
 
+
 {% block main %}
-  <h1>{{ title }}</h1>
-  {{ blog_post.content|safe }}
+  <h1>{{ blog_post.title }}</h1>
+
+  <section id="blog-content">
+    {{ blog_post.content.html|safe }}
+  </section>
 {% endblock %}

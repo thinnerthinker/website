@@ -1,4 +1,6 @@
-use crate::{templates::{ExamplesSayle, ExamplesSursface, Header, Main, Navbar, ProjectsSursface, ProjectsWebsite, Raw}, Asset};
+use crate::{templates::{Blog, BlogCrust, BlogPage, BlogPost, ExamplesSayle, ExamplesSursface, Header, Main, Navbar, ProjectsSursface, ProjectsWebsite, Raw, RawAny}, Asset};
+
+use self::static_paths::StaticPaths;
 
 mod navbar;
 pub mod static_paths;
@@ -50,16 +52,19 @@ impl ExamplesSursface {
                 example_id: "hello_window".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Hello Window".to_string(),
+                notes: "".to_string()
             }),
             Raw::to_raw(WasmExample {
                 example_id: "hello_triangle".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Hello Triangle".to_string(),
+                notes: "".to_string()
             }),
             Raw::to_raw(WasmExample {
-                example_id: "spinning_cube".to_string(),
+                example_id: "cube_camera".to_string(),
                 project_id: "sursface_examples".to_string(),
-                title: "Spinning Cube".to_string(),
+                title: "Cube Camera".to_string(),
+                notes: "Drag your cursor to pan around the die!".to_string()
             })];
 
         ExamplesSursface { 
@@ -79,6 +84,46 @@ impl ExamplesSayle {
             header: Raw::to_raw(Header::create_main()),
             examples_navbar: Raw::to_raw(Navbar::create_examples_sayle("/examples/sayle")),
             ..Default::default()
+        }
+    }
+}
+
+impl BlogPost {
+    pub fn create_crust() -> BlogPost {
+        BlogPost { 
+            title: "Crust - Creatively Frustrated".to_string(), 
+            slug: "crust".to_string(), 
+            content: RawAny { html: BlogCrust {}.to_string() }
+        }
+    }
+}
+
+
+impl Blog {
+    pub fn create() -> Self {
+        let posts = vec![
+            BlogPost::create_crust()
+        ];
+
+        let sp = StaticPaths::new();
+
+        Self {
+            main_navbar: Raw::to_raw(Navbar::create_main("/blog")),
+            header: Raw::to_raw(Header::create_main()),
+            main_css_path: sp.main_css_path.clone(),
+            blog_posts: posts,
+        }
+    }
+}
+
+impl BlogPage {
+    pub fn create(blog_post: BlogPost) -> Self {
+        let sp = StaticPaths::new();
+        Self { 
+            main_navbar: Raw::to_raw(Navbar::create_main("/blog")),
+            header: Raw::to_raw(Header::create_main()),
+            main_css_path: sp.main_css_path.clone(),
+            blog_post
         }
     }
 }

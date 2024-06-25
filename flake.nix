@@ -32,7 +32,9 @@
           {
             system = "aarch64-unknown-linux-gnu";
             arch = "aarch64-linux";
-            depsBuild = with pkgs; [ patchelf ];
+            depsBuild = with pkgs; [
+              qemu
+            ];
             postInstall = crateName: ''
               find $out -type f -exec sh -c '
                 if file "$1" | grep -q "ELF .* executable"; then
@@ -41,6 +43,21 @@
               ' sh {} \;
             '';
             inherit buildFilePatterns;
+            env = {
+              CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER = "${pkgs.stdenv.cc.targetPrefix}cc";
+              CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_RUNNER = "qemu-aarch64";
+              cargoExtraArgs = "--target aarch64-unknown-linux-gnu";
+
+              HOST_CC = "${pkgs.stdenv.cc.nativePrefix}cc";
+              TARGET_CC = "${pkgs.stdenv.cc.targetPrefix}cc";
+
+              nativeBuildInputs = with pkgs; [
+                patchelf
+                pkg-config
+              ] ++ lib.optionals stdenv.buildPlatform.isDarwin [
+                libiconv
+              ];
+            };
           }
         ];
         tomersLib = tomers.libFor system targetPlatforms;

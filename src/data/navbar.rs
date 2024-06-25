@@ -23,7 +23,7 @@ impl Navbar {
                 url: "/blog",
                 route: "/blog",
                 icon: Asset::get_hashed_url("images/blog.png"),
-                disabled: true,
+                disabled: false,
             },
             NavLink {
                 name: "Docs",

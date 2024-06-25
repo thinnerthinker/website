@@ -1,35 +1,47 @@
+<p>Software development methodology emergent in a constant cycle of curiosity and frustration that incrementally grants
+    highly correct updates, aka a little glimpse into how I work.</p>
+<h2>Phase 1: Design</h2>
 <ul>
-    <li>Software development methodology emergent in a constant cycle of curiosity and frustration that incrementally
-        grants highly correct updates<h2 id="phase-1-system-design">Phase 1: System Design</h2>
-    </li>
-    <li>The workflow start with curiosity, usually lasting for 2 days</li>
+    <li>The workflow starts with curiosity, usually lasting for 2 days</li>
     <li>During this phase, high-level system design is carried out, with necessary models (in code) being created</li>
     <li>This phase will be interrupted by short pulses of frustration (on average 30 mins) while fixing the errors in
         the models</li>
-    <li>AI is generally not used in this phase<ul>
-            <li>Rarely ideas can be ignited/extended with a one-shot prompt, but is generally unnecessary<h2
-                    id="phase-2-implementation">Phase 2: Implementation</h2>
-            </li>
+    <li>AI is generally not used in this phase
+        <ul>
+            <li>Rarely ideas can be ignited/extended with a one-shot prompt, but is generally unnecessary</li>
         </ul>
     </li>
+</ul>
+<h2>Phase 2: Implementation</h2>
+<ul>
     <li>Starts with frustration</li>
-    <li>A working implementation is written<ul>
-            <li>logic that links the models is written</li>
-            <li>one or more examples/test cases are written and developed in tandem with the logic</li>
-            <li>heavily AI-generated, 80% of the time spent</li>
+    <li>A working implementation is written
+        <ul>
+            <li>Logic that links the models is written</li>
+            <li>One or more examples/test cases are written and developed in tandem with the logic</li>
+            <li>Heavily AI-generated, 80% of the time spent</li>
         </ul>
     </li>
-    <li>riddled with curiosity, uncovering or using new APIs, refactoring AI-generated code into better patterns</li>
-    <li>50% frustration<h2 id="phase-3-testing">Phase 3: Testing</h2>
-    </li>
-    <li>starts with curiosity</li>
-    <li>encounter exotic errors, that are completely unexpected and interesting to solve</li>
-    <li>almost no frustration (20%), except for Nix flakes not registering git-checked-in files :(, and some trial and
+    <li>Riddled with curiosity, uncovering or using new APIs, refactoring AI-generated code into better patterns</li>
+    <li>50% frustration</li>
+</ul>
+<h2>Phase 3: Testing</h2>
+<ul>
+    <li>Starts with curiosity</li>
+    <li>Encounter exotic errors, that are completely unexpected and interesting to solve</li>
+    <li>Almost no frustration (20%), except for Nix flakes not registering git-checked-in files :(, and some trial and
         error problems</li>
-    <li>AI-generation 20% of the time spent<h2 id="phase-4-tweaking">Phase 4: Tweaking</h2>
-    </li>
+    <li>AI-generation 20% of the time spent</li>
+</ul>
+<h2>Phase 4: Tweaking</h2>
+<ul>
     <li>Can start with either, depending on the reason to tweak</li>
     <li>Get a high-level overview of the implementation, and find rough spots/patterns to factor out</li>
     <li>Implement these changes (almost always refactoring)</li>
     <li>AI-generation 30% of the time spent</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+    <li>Some development environments go better with this approach.</li>
+    <li>One of the best languages to try this with is Rust, since it integrates tightly with compile-time correctness, and the compiler itself will do the tests for you.</li>
 </ul>

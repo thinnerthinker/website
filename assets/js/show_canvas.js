@@ -1,6 +1,7 @@
 function showCanvas(event, exampleId, projectId) {
     const arrowIcon = event.target;
     const canvasContainer = arrowIcon.closest('h3').nextElementSibling;
+    const notes = arrowIcon.closest('span');
 
     if (canvasContainer.style.display === 'none' || canvasContainer.style.display === '') {
         canvasContainer.style.display = 'block';
@@ -25,5 +26,7 @@ function showCanvas(event, exampleId, projectId) {
             run();
         `;
         canvasContainer.appendChild(script);
+
+        notes.style.display = 'inline';
     }
 }

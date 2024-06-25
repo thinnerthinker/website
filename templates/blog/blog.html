@@ -1,20 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}{{ blog_post.title }} - Thinnerthinker - Blog{% endblock %}
+{% block title %}Thinnerthinker - Blog{% endblock %}
 
 {% block nav %}
-  {{ main_navbar.html|safe }}
+{{ main_navbar.html|safe }}
 {% endblock %}
 
 
 {% block main %}
-    <h1>Blog</h1>
-
-    {% block blog_content %}
-    <ul>
-        {% for p in blog_posts %}
-            <li><a href="/blog/{{ p.slug }}">{{ p.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% endblock %}
+{% block blog_content %}
+<h1>Blog</h1>
+<ul>
+    {% for p in blog_posts %}
+        <li><a href="/blog/{{ p.slug }}">{{ p.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
 {% endblock %}

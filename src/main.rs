@@ -13,6 +13,8 @@ use tracing_subscriber::FmtSubscriber;
 use askama::Template;
 use rust_embed::RustEmbed;
 
+use crate::templates::BlogPost;
+
 #[derive(RustEmbed)]
 #[folder = "assets/"]
 struct Asset;
@@ -49,7 +51,7 @@ async fn main() {
         .route("/examples/sayle", get(|| render(templates::ExamplesSayle::create())))
 
         .route("/blog", get(|| render(templates::Blog::create())))
-        .route("/blog/crust", get(|| render(templates::BlogCrust::default())))
+        .route("/blog/crust", get(|| render(templates::BlogPage::create(BlogPost::create_crust()))))
 
         .route("/favicon.ico", get(|| async { Redirect::to("/assets/images/flake.png") }))
         .route("/assets/*file", get(serve_embedded_file))
