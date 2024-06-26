@@ -68,6 +68,13 @@ impl ExamplesSursface {
                 title: "Cube Camera".to_string(),
                 notes: "Drag your cursor to pan around the die!".to_string(),
                 url: "/assets/sursface_examples/cube_camera.js".to_string()
+            }),
+            Raw::to_raw(WasmExample {
+                example_id: "mandelbrot".to_string(),
+                project_id: "sursface_examples".to_string(),
+                title: "Mandelbrot".to_string(),
+                notes: "Drag your cursor to pan around the Mandelbrot set. Press long and don't move to zoom in. Do a short tap before the long press to zoom out.".to_string(),
+                url: "/assets/sursface_examples/mandelbrot.js".to_string()
             })];
 
         ExamplesSursface { 

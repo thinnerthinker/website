@@ -189,11 +189,11 @@
         "tomers": "tomers"
       },
       "locked": {
-        "lastModified": 1719375502,
-        "narHash": "sha256-X+Vc6a7tsdGtZ5rLwtTCdjVzpQsLUSnTtCvdBvMYWbI=",
+        "lastModified": 1719418849,
+        "narHash": "sha256-99ROWYB0AtJxq4Fqz17n0sdFX1kjDfiS7Au9MM6kuq0=",
         "owner": "thinnerthinker",
         "repo": "sursface",
-        "rev": "acf0fc2c688dfc41dcfb15f7d6650d8606e97bd3",
+        "rev": "327bc8f63f46983d5c9f0ea53b9e279accaa7490",
         "type": "github"
       },
       "original": {
