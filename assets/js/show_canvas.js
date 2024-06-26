@@ -1,4 +1,4 @@
-function showCanvas(event, exampleId, projectId) {
+function showCanvas(event, exampleId, projectId, url) {
     const arrowIcon = event.target;
     const canvasContainer = arrowIcon.closest('h3').nextElementSibling;
     const notes = arrowIcon.closest('span');
@@ -18,7 +18,7 @@ function showCanvas(event, exampleId, projectId) {
         const script = document.createElement('script');
         script.type = 'module';
         script.innerHTML = `
-            import init, { start_browser } from '/assets/${projectId}/${exampleId}.js';
+            import init, { start_browser } from '${url}';
             async function run() {
                 await init();
                 start_browser(document.getElementById("${exampleId}"));

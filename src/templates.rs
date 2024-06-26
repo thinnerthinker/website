@@ -153,6 +153,7 @@ pub struct WasmExample {
     pub example_id: String,
     pub project_id: String,
     pub notes: String,
+    pub url: String
 }
 
 #[derive(Template)]

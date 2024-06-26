@@ -52,19 +52,22 @@ impl ExamplesSursface {
                 example_id: "hello_window".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Hello Window".to_string(),
-                notes: "".to_string()
+                notes: "".to_string(),
+                url: "/assets/sursface_examples/hello_window.js".to_string()
             }),
             Raw::to_raw(WasmExample {
                 example_id: "hello_triangle".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Hello Triangle".to_string(),
-                notes: "".to_string()
+                notes: "".to_string(),
+                url: "/assets/sursface_examples/hello_triangle.js".to_string()
             }),
             Raw::to_raw(WasmExample {
                 example_id: "cube_camera".to_string(),
                 project_id: "sursface_examples".to_string(),
                 title: "Cube Camera".to_string(),
-                notes: "Drag your cursor to pan around the die!".to_string()
+                notes: "Drag your cursor to pan around the die!".to_string(),
+                url: "/assets/sursface_examples/cube_camera.js".to_string()
             })];
 
         ExamplesSursface { 
