@@ -8,9 +8,14 @@
       url = "github:thinnerthinker/tomers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sursface = {
+      url = "github:thinnerthinker/sursface";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, tomers, ... }:
+  outputs = { self, nixpkgs, tomers, sursface, ... }:
     tomers.inputs.flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -62,13 +67,30 @@
         ];
         tomersLib = tomers.libFor system targetPlatforms;
       in
+      let
+        src-with-sursface-examples = pkgs.stdenv.mkDerivation {
+          pname = "src-with-sursface-examples";
+          version = "1.0.0";
+
+          src = ./.;
+          buildInputs = [ sursface.packages.${system}.wasm32-unknown ];
+
+          phases = [ "unpackPhase" "installPhase" ];
+
+          installPhase = ''
+            mkdir -p $out/bin/assets/sursface_examples
+            cp -R ${sursface.packages.${system}.wasm32-unknown}/bindgen/* $out/bin/assets/sursface_examples/
+            chmod -R 755 $out/bin/assets/sursface_examples
+            cp -r ./* $out/bin/
+          '';
+        };
+      in
       rec {
         packagesForEachPlatform = tomersLib.packagesForEachPlatform;
         devShellsForEachPlatform = tomersLib.devShellsForEachPlatform;
 
-        packages = packagesForEachPlatform ./.;
-        devShells = devShellsForEachPlatform ./.;
+        packages = packagesForEachPlatform "${src-with-sursface-examples}/bin";
+        devShells = devShellsForEachPlatform "${src-with-sursface-examples}/bin";
       }
     );
-} 
- 
+}

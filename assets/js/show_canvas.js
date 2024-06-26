@@ -27,6 +27,8 @@ function showCanvas(event, exampleId, projectId) {
         `;
         canvasContainer.appendChild(script);
 
-        notes.style.display = 'inline';
+        if (notes) {
+            notes.style.display = 'inline';
+        }
     }
 }
