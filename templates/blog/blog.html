@@ -10,10 +10,11 @@
 {% block main %}
 {% block blog_content %}
 <h1>Blog</h1>
-<ul>
-    {% for p in blog_posts %}
-        <li><a href="/blog/{{ p.slug }}">{{ p.title }}</a></li>
-    {% endfor %}
-</ul>
+{% for p in blog_posts %}
+<section id="{{ p.slug }}">
+    <a href="/blog/{{ p.slug }}">{{ p.title }}</a>
+    <p><i>{{ p.summary }}</i></p>
+</section>
+{% endfor %}
 {% endblock %}
 {% endblock %}

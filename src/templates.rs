@@ -230,6 +230,7 @@ impl Default for Blog {
 pub struct BlogPost {
     pub title: String,
     pub slug: String,
+    pub summary: String,
     pub content: RawAny
 }
 

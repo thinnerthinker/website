@@ -91,9 +91,10 @@ impl ExamplesSayle {
 impl BlogPost {
     pub fn create_crust() -> BlogPost {
         BlogPost { 
-            title: "Crust - Creatively Frustrated".to_string(), 
-            slug: "crust".to_string(), 
-            content: RawAny { html: BlogCrust {}.to_string() }
+            title: "Crust - Curiously Frustrated".to_string(), 
+            slug: "crust".to_string(),
+            content: RawAny { html: BlogCrust {}.to_string() },
+            summary: "Presenting a new software development workflow for people (such as me) who like deep work.".to_string(),
         }
     }
 }
